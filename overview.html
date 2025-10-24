@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
@@ -5,20 +7,15 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Overview &mdash; Crazyswarm2 1.0a1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=036e6a88"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=036e6a88"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -37,9 +34,6 @@
           <a href="index.html" class="icon icon-home">
             Crazyswarm2
           </a>
-              <div class="version">
-                1.0
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -90,7 +84,7 @@
   <section id="overview">
 <span id="id1"></span><h1>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h1>
 <p>This page will explain the overview of the crazyflie ROS 2 nodes:</p>
-<img alt="_images/overview_nodes.jpg" src="_images/overview_nodes.jpg" />
+<img alt="_images/architecture.png" src="_images/architecture.png" />
 <section id="explanation-per-package">
 <h2>Explanation per package<a class="headerlink" href="#explanation-per-package" title="Link to this heading"></a></h2>
 <p>In the <a class="reference external" href="https://github.com/IMRCLab/crazyswarm2">source code of the Crazyswarm2 (Crazyflie ROS 2) project</a>, there are several packages that we will explain here:</p>
@@ -168,11 +162,19 @@
 <li><p>default: odom</p></li>
 </ul>
 </td>
-<td><p>No</p></td>
+<td><p>Yes</p></td>
 <td><p>Yes</p></td>
 <td><p>No</p></td>
 </tr>
 <tr class="row-odd"><td><ul class="simple">
+<li><p>default: status</p></li>
+</ul>
+</td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><ul class="simple">
 <li><p>custom</p></li>
 </ul>
 </td>
@@ -180,7 +182,7 @@
 <td><p>Yes</p></td>
 <td><p>No</p></td>
 </tr>
-<tr class="row-even"><td><ul class="simple">
+<tr class="row-odd"><td><ul class="simple">
 <li><p>Add/Remove Srv</p></li>
 </ul>
 </td>
@@ -188,14 +190,14 @@
 <td><p>Yes</p></td>
 <td><p>No</p></td>
 </tr>
-<tr class="row-odd"><td><p>Broadcasts</p></td>
+<tr class="row-even"><td><p>Broadcasts</p></td>
 <td><p>Yes</p></td>
 <td><p>No</p></td>
 <td><p>n/a</p></td>
 </tr>
-<tr class="row-even"><td colspan="4"><p>Manual control</p></td>
+<tr class="row-odd"><td colspan="4"><p>Manual control</p></td>
 </tr>
-<tr class="row-odd"><td><ul class="simple">
+<tr class="row-even"><td><ul class="simple">
 <li><p>cmd_full_state</p></li>
 </ul>
 </td>
@@ -203,25 +205,25 @@
 <td><p>Yes</p></td>
 <td><p>Yes</p></td>
 </tr>
-<tr class="row-even"><td><ul class="simple">
+<tr class="row-odd"><td><ul class="simple">
 <li><p>cmd_position</p></li>
 </ul>
 </td>
 <td><p>Yes</p></td>
-<td><p>No</p></td>
-<td><p>No</p></td>
-</tr>
-<tr class="row-odd"><td><ul class="simple">
-<li><p>cmd_hover</p></li>
-</ul>
-</td>
-<td><p>No</p></td>
 <td><p>Yes</p></td>
 <td><p>No</p></td>
 </tr>
-<tr class="row-even"><td colspan="4"><p>High-level control</p></td>
+<tr class="row-even"><td><ul class="simple">
+<li><p>cmd_hover</p></li>
+</ul>
+</td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>No</p></td>
 </tr>
-<tr class="row-odd"><td><ul class="simple">
+<tr class="row-odd"><td colspan="4"><p>High-level control</p></td>
+</tr>
+<tr class="row-even"><td><ul class="simple">
 <li><p>takeoff/land</p></li>
 </ul>
 </td>
@@ -229,7 +231,7 @@
 <td><p>Yes</p></td>
 <td><p>Yes</p></td>
 </tr>
-<tr class="row-even"><td><ul class="simple">
+<tr class="row-odd"><td><ul class="simple">
 <li><p>go_to</p></li>
 </ul>
 </td>
@@ -237,7 +239,7 @@
 <td><p>Yes</p></td>
 <td><p>Yes</p></td>
 </tr>
-<tr class="row-odd"><td><ul class="simple">
+<tr class="row-even"><td><ul class="simple">
 <li><p>upload/start traj</p></li>
 </ul>
 </td>
@@ -245,9 +247,9 @@
 <td><p>Yes</p></td>
 <td><p>Yes</p></td>
 </tr>
-<tr class="row-even"><td colspan="4"><p>Positioning System</p></td>
+<tr class="row-odd"><td colspan="4"><p>Positioning System</p></td>
 </tr>
-<tr class="row-odd"><td><ul class="simple">
+<tr class="row-even"><td><ul class="simple">
 <li><p>Motion Capture</p></li>
 </ul>
 </td>
@@ -255,7 +257,7 @@
 <td><p>Yes</p></td>
 <td><p>No</p></td>
 </tr>
-<tr class="row-even"><td><ul class="simple">
+<tr class="row-odd"><td><ul class="simple">
 <li><p>Flow Deck</p></li>
 </ul>
 </td>
@@ -263,7 +265,7 @@
 <td><p>Yes</p></td>
 <td><p>No</p></td>
 </tr>
-<tr class="row-odd"><td><ul class="simple">
+<tr class="row-even"><td><ul class="simple">
 <li><p>LightHouse</p></li>
 </ul>
 </td>
@@ -271,13 +273,23 @@
 <td><p>Yes</p></td>
 <td><p>No</p></td>
 </tr>
-<tr class="row-even"><td><ul class="simple">
+<tr class="row-odd"><td><ul class="simple">
 <li><p>LPS</p></li>
 </ul>
 </td>
 <td><p>Yes</p></td>
 <td><p>Yes</p></td>
 <td><p>No</p></td>
+</tr>
+<tr class="row-even"><td colspan="4"><p>Misc</p></td>
+</tr>
+<tr class="row-odd"><td><ul class="simple">
+<li><p>Arming</p></li>
+</ul>
+</td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>n/a</p></td>
 </tr>
 </tbody>
 </table>
@@ -295,7 +307,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2022, Wolfgang Hönig (IMRClab), Kimberly McGuire (Bitcraze AB) and contributors.</p>
+    <p>&#169; Copyright 2021-2025, Wolfgang Hönig (TU Berlin), Kimberly N. McGuire (Independent), and contributors.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

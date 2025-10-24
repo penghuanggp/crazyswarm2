@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
@@ -5,20 +7,15 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ROS 2 Tutorials &mdash; Crazyswarm2 1.0a1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=036e6a88"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=036e6a88"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -37,9 +34,6 @@
           <a href="index.html" class="icon icon-home">
             Crazyswarm2
           </a>
-              <div class="version">
-                1.0
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -110,7 +104,7 @@
 <p>We have an example of the telop_twist_keyboard package working together with the crazyflie</p>
 <p>First, make sure that the crazyflies.yaml has the right URI and if you are using the <a class="reference external" href="https://www.bitcraze.io/products/flow-deck-v2/">Flow deck</a> or <a class="reference external" href="https://www.bitcraze.io/documentation/system/positioning//">any other position system available</a> to the crazyflie.
 set the controller to 1 (PID).</p>
-<p>And if you  have not already, install the teleop package for the keyboard. (replace DISTRO with humble or iron):</p>
+<p>And if you  have not already, install the teleop package for the keyboard. (replace DISTRO with humble, iron, or jazzy):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ros-DISTRO-teleop-twist-keyboard
 </pre></div>
 </div>
@@ -120,7 +114,7 @@ set the controller to 1 (PID).</p>
 </pre></div>
 </div>
 <p>in another terminal run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>run<span class="w"> </span>teleop_twist_keyboard<span class="w"> </span>telop_twist_keyboard
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>run<span class="w"> </span>teleop_twist_keyboard<span class="w"> </span>teleop_twist_keyboard
 </pre></div>
 </div>
 <p>Use ‘t’ to take off, and ‘b’ to land. For the rest, use the instructions of the telop package.</p>
@@ -150,9 +144,9 @@ firmware_logging:
 The crazyflie names should appear with their estimated position.</p>
 <p>This RVIZ2 visualization can be done for the default topics:</p>
 <ul class="simple">
-<li><p>‘pose’: ‘/cf1/pose/’ Transforms and Pose</p></li>
-<li><p>‘odom’: ‘/cf1/odom/’ Odometry</p></li>
-<li><p>‘scan’: ‘/cf1/scan’ Scan</p></li>
+<li><p>‘pose’: ‘/cf231/pose/’ Transforms and Pose</p></li>
+<li><p>‘odom’: ‘/cf231/odom/’ Odometry</p></li>
+<li><p>‘scan’: ‘/cf231/scan’ Scan</p></li>
 </ul>
 <p>Here you can see an example of 5 crazyflies with the Pose default topic enabled, while taking off and landing</p>
 <div style="position: relative; padding-bottom: 56.25%; margin-bottom: 20pt; height: 0; overflow: hidden; max-width: 100%; height: auto;">
@@ -161,7 +155,7 @@ The crazyflie names should appear with their estimated position.</p>
 <section id="mapping-with-simple-mapper">
 <h2>Mapping with simple mapper<a class="headerlink" href="#mapping-with-simple-mapper" title="Link to this heading"></a></h2>
 <p>If you have a crazyflie with a multiranger and flowdeck, you can try out some simple mapping.</p>
-<p>Make sure that the scan and odometry logging is enabled in crazyflies.yaml:</p>
+<p>Make sure that the scan and odometry logging is enabled and the reference frame is set to odom in crazyflies.yaml:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>firmware_logging:
 <span class="w">  </span>enabled:<span class="w"> </span><span class="nb">true</span>
 <span class="w">  </span>default_topics:
@@ -176,6 +170,10 @@ The crazyflie names should appear with their estimated position.</p>
 <span class="w">  </span>stabilizer:
 <span class="w">    </span>estimator:<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="c1"># 1: complementary, 2: kalman</span>
 <span class="w">    </span>controller:<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c1"># 1: PID, 2: mellinger</span>
+</pre></div>
+</div>
+<p>Finally make sure that the reference frame is set to ‘cf231/odom’</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>reference_frame:<span class="w"> </span>cf231/odom
 </pre></div>
 </div>
 <p>If you are using a different name for your crazyflie, make sure to change the following in the example launch file (multiranger_simple_mapper_launch.py):</p>
@@ -204,12 +202,12 @@ With a <a class="reference external" href="https://www.bitcraze.io/products/flow
 </pre></div>
 </div>
 <p>Go to crazyflie/config/crazyflie.yaml, change the URI of the crazyflie to the one yours has and put the crazyflies you don’t use on ‘enabled: false’:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cf1:
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cf231:
 <span class="w">  </span>enabled:<span class="w"> </span><span class="nb">true</span>
 <span class="w">  </span>uri:<span class="w"> </span>radio://0/20/2M/E7E7E7E701
 </pre></div>
 </div>
-<p>And enable the following default topic logging:</p>
+<p>And enable the following default topic logging and the reference frames:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>firmware_logging:
 <span class="w">  </span>enabled:<span class="w"> </span><span class="nb">true</span>
 <span class="w">  </span>default_topics:
@@ -226,52 +224,50 @@ With a <a class="reference external" href="https://www.bitcraze.io/products/flow
 <span class="w">    </span>controller:<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c1"># 1: PID, 2: mellinger</span>
 </pre></div>
 </div>
+<p>Finally make sure that the reference frame is set to ‘cf231/odom’</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>reference_frame:<span class="w"> </span>cf231/odom
+</pre></div>
+</div>
 </section>
 <section id="connecting-with-the-crazyflie">
 <h3>Connecting with the Crazyflie<a class="headerlink" href="#connecting-with-the-crazyflie" title="Link to this heading"></a></h3>
 <p>Let’s first look at the launch file real quick (multiranger_mapping_launch.py):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="k">return</span><span class="w"> </span>LaunchDescription<span class="o">([</span>
-<span class="w">    </span>Node<span class="o">(</span>
-<span class="w">        </span><span class="nv">package</span><span class="o">=</span><span class="s1">&#39;crazyflie&#39;</span>,
-<span class="w">        </span><span class="nv">executable</span><span class="o">=</span><span class="s1">&#39;crazyflie_server.py&#39;</span>,
-<span class="w">        </span><span class="nv">name</span><span class="o">=</span><span class="s1">&#39;crazyflie_server&#39;</span>,
-<span class="w">        </span><span class="nv">output</span><span class="o">=</span><span class="s1">&#39;screen&#39;</span>,
-<span class="w">        </span><span class="nv">parameters</span><span class="o">=[</span>server_params<span class="o">]</span>,
-<span class="w">    </span><span class="o">)</span>,
+<span class="w">    </span>IncludeLaunchDescription<span class="o">(</span>
+<span class="w">    </span>PythonLaunchDescriptionSource<span class="o">([</span>os.path.join<span class="o">(</span>
+<span class="w">        </span>get_package_share_directory<span class="o">(</span><span class="s1">&#39;crazyflie&#39;</span><span class="o">)</span>,<span class="w"> </span><span class="s1">&#39;launch&#39;</span><span class="o">)</span>,
+<span class="w">        </span><span class="s1">&#39;/launch.py&#39;</span><span class="o">])</span>,
+<span class="w">    </span><span class="nv">launch_arguments</span><span class="o">={</span>
+<span class="w">        </span><span class="s1">&#39;backend&#39;</span>:<span class="w"> </span><span class="s1">&#39;cflib&#39;</span>,
+<span class="w">        </span><span class="s1">&#39;gui&#39;</span>:<span class="w"> </span><span class="s1">&#39;false&#39;</span>,
+<span class="w">        </span><span class="s1">&#39;teleop&#39;</span>:<span class="w"> </span><span class="s1">&#39;false&#39;</span>,
+<span class="w">        </span><span class="s1">&#39;mocap&#39;</span>:<span class="w"> </span><span class="s1">&#39;false&#39;</span>,
+<span class="w">        </span><span class="o">}</span>.items<span class="o">())</span>,
 <span class="w">    </span>Node<span class="o">(</span>
 <span class="w">        </span><span class="nv">package</span><span class="o">=</span><span class="s1">&#39;crazyflie&#39;</span>,
 <span class="w">        </span><span class="nv">executable</span><span class="o">=</span><span class="s1">&#39;vel_mux.py&#39;</span>,
 <span class="w">        </span><span class="nv">name</span><span class="o">=</span><span class="s1">&#39;vel_mux&#39;</span>,
 <span class="w">        </span><span class="nv">output</span><span class="o">=</span><span class="s1">&#39;screen&#39;</span>,
-<span class="w">        </span><span class="nv">parameters</span><span class="o">=[{</span><span class="s2">&quot;hover_height&quot;</span>:<span class="w"> </span><span class="m">0</span>.3<span class="o">}</span>,
-<span class="w">                    </span><span class="o">{</span><span class="s2">&quot;incoming_twist_topic&quot;</span>:<span class="w"> </span><span class="s2">&quot;/cmd_vel&quot;</span><span class="o">}</span>,
-<span class="w">                    </span><span class="o">{</span><span class="s2">&quot;robot_prefix&quot;</span>:<span class="w"> </span><span class="s2">&quot;/cf1&quot;</span><span class="o">}]</span>
+<span class="w">        </span><span class="nv">parameters</span><span class="o">=[{</span><span class="s1">&#39;hover_height&#39;</span>:<span class="w"> </span><span class="m">0</span>.3<span class="o">}</span>,
+<span class="w">                    </span><span class="o">{</span><span class="s1">&#39;incoming_twist_topic&#39;</span>:<span class="w"> </span><span class="s1">&#39;/cmd_vel&#39;</span><span class="o">}</span>,
+<span class="w">                    </span><span class="o">{</span><span class="s1">&#39;robot_prefix&#39;</span>:<span class="w"> </span><span class="s1">&#39;/cf231&#39;</span><span class="o">}]</span>
 <span class="w">    </span><span class="o">)</span>,
-<span class="w">    </span>Node<span class="o">(</span>
-<span class="w">    </span><span class="nv">parameters</span><span class="o">=[</span>
-<span class="w">      </span><span class="o">{</span><span class="s1">&#39;odom_frame&#39;</span>:<span class="w"> </span><span class="s1">&#39;odom&#39;</span><span class="o">}</span>,
-<span class="w">      </span><span class="o">{</span><span class="s1">&#39;map_frame&#39;</span>:<span class="w"> </span><span class="s1">&#39;world&#39;</span><span class="o">}</span>,
-<span class="w">      </span><span class="o">{</span><span class="s1">&#39;base_frame&#39;</span>:<span class="w"> </span><span class="s1">&#39;cf1&#39;</span><span class="o">}</span>,
-<span class="w">      </span><span class="o">{</span><span class="s1">&#39;scan_topic&#39;</span>:<span class="w"> </span><span class="s1">&#39;/cf1/scan&#39;</span><span class="o">}</span>,
-<span class="w">      </span><span class="o">{</span><span class="s1">&#39;use_scan_matching&#39;</span>:<span class="w"> </span>False<span class="o">}</span>,
-<span class="w">      </span><span class="o">{</span><span class="s1">&#39;max_laser_range&#39;</span>:<span class="w"> </span><span class="m">3</span>.5<span class="o">}</span>,
-<span class="w">      </span><span class="o">{</span><span class="s1">&#39;resolution&#39;</span>:<span class="w"> </span><span class="m">0</span>.1<span class="o">}</span>,
-<span class="w">      </span><span class="o">{</span><span class="s1">&#39;minimum_travel_distance&#39;</span>:<span class="w"> </span><span class="m">0</span>.01<span class="o">}</span>,
-<span class="w">      </span><span class="o">{</span><span class="s1">&#39;minimum_travel_heading&#39;</span>:<span class="w"> </span><span class="m">0</span>.001<span class="o">}</span>,
-<span class="w">      </span><span class="o">{</span><span class="s1">&#39;map_update_interval&#39;</span>:<span class="w"> </span><span class="m">0</span>.1<span class="o">}</span>
-<span class="w">    </span><span class="o">]</span>,
-<span class="w">    </span><span class="nv">package</span><span class="o">=</span><span class="s1">&#39;slam_toolbox&#39;</span>,
-<span class="w">    </span><span class="nv">executable</span><span class="o">=</span><span class="s1">&#39;async_slam_toolbox_node&#39;</span>,
-<span class="w">    </span><span class="nv">name</span><span class="o">=</span><span class="s1">&#39;slam_toolbox&#39;</span>,
-<span class="w">    </span><span class="nv">output</span><span class="o">=</span><span class="s1">&#39;screen&#39;</span><span class="o">)</span>,
+<span class="w">    </span>IncludeLaunchDescription<span class="o">(</span>
+<span class="w">        </span>PythonLaunchDescriptionSource<span class="o">(</span>
+<span class="w">            </span>os.path.join<span class="o">(</span>get_package_share_directory<span class="o">(</span><span class="s1">&#39;slam_toolbox&#39;</span><span class="o">)</span>,<span class="w"> </span><span class="s1">&#39;launch/online_async_launch.py&#39;</span><span class="o">))</span>,
+<span class="w">        </span><span class="nv">launch_arguments</span><span class="o">={</span>
+<span class="w">            </span><span class="s1">&#39;slam_params_file&#39;</span>:<span class="w"> </span>os.path.join<span class="o">(</span>get_package_share_directory<span class="o">(</span><span class="s1">&#39;crazyflie_examples&#39;</span><span class="o">)</span>,<span class="w"> </span><span class="s1">&#39;config/slam_params.yaml&#39;</span><span class="o">)</span>,
+<span class="w">            </span><span class="s1">&#39;use_sim_time&#39;</span>:<span class="w"> </span><span class="s1">&#39;False&#39;</span>,
+<span class="w">        </span><span class="o">}</span>.items<span class="o">()</span>
+<span class="w">    </span><span class="o">)</span>,
 <span class="o">])</span>
 </pre></div>
 </div>
 <p>Here is an explanation of the nodes:</p>
 <ul class="simple">
-<li><p>The first node enables the crazyflie server, namely the python version (cflib) as that currently has logging enabled. This takes the crazyflies.yaml file you just edited and uses those values to set up the crazyflie.</p></li>
+<li><p>The first node enables the crazyflie server, namely the python version (cflib) as that currently has logging enabled. This takes the crazyflies.yaml file you just edited and uses those values to set up the crazyflie. You might need to change some topic strings based on your Crazyflie name (<cite>/cf231</cite> to something else)</p></li>
 <li><p>The second node is a velocity command handler, which takes an incoming twist message, makes the Crazyflie take off to a fixed height and enables velocity control of external packages (you’ll see why soon enough).</p></li>
-<li><p>The third node is the slam toolbox node. You noted that we gave it some different parameters, where we upped the speed of the map generation, decreased the resolution and turn of ray matching as mentioned in the warning above.</p></li>
+<li><p>The third node is the slam toolbox node. You noted that we gave it some different parameters, which can be found in the crazyflie_examples/config/slam_params.yaml. Here we upped the speed of the map generation, decreased the resolution and turn of ray matching as mentioned in the warning above.</p></li>
 </ul>
 <p>Turn on your crazyflie and put it in the middle of the room you would like to map. Make sure to mark the starting position for later.</p>
 <p>Now startup the crazyflie server with the following example launch file, after sourcing the ‘setup.bash’ of course:</p>
@@ -286,7 +282,7 @@ ros2<span class="w"> </span>launch<span class="w"> </span>crazyflie_examples<spa
 <span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>vel_mux.py-2<span class="o">]</span>:<span class="w"> </span>process<span class="w"> </span>started<span class="w"> </span>with<span class="w"> </span>pid<span class="w"> </span><span class="o">[</span><span class="m">15502</span><span class="o">]</span>
 <span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>async_slam_toolbox_node-3<span class="o">]</span>:<span class="w"> </span>process<span class="w"> </span>started<span class="w"> </span>with<span class="w"> </span>pid<span class="w"> </span><span class="o">[</span><span class="m">15504</span><span class="o">]</span>
 <span class="o">[</span>async_slam_toolbox_node-3<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1664806553</span>.866149124<span class="o">]</span><span class="w"> </span><span class="o">[</span>slam_toolbox<span class="o">]</span>:<span class="w"> </span>Using<span class="w"> </span>solver<span class="w"> </span>plugin<span class="w"> </span>solver_plugins::CeresSolver
-<span class="o">[</span>vel_mux.py-2<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1664806559</span>.174521891<span class="o">]</span><span class="w"> </span><span class="o">[</span>vel_mux<span class="o">]</span>:<span class="w"> </span>Velocity<span class="w"> </span>Multiplexer<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>/cf1<span class="w"> </span>with<span class="w"> </span>height<span class="w"> </span><span class="m">0</span>.3<span class="w"> </span>m<span class="w"> </span>using<span class="w"> </span>the<span class="w"> </span>/cmd_vel<span class="w"> </span>topic
+<span class="o">[</span>vel_mux.py-2<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1664806559</span>.174521891<span class="o">]</span><span class="w"> </span><span class="o">[</span>vel_mux<span class="o">]</span>:<span class="w"> </span>Velocity<span class="w"> </span>Multiplexer<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>/cf231<span class="w"> </span>with<span class="w"> </span>height<span class="w"> </span><span class="m">0</span>.3<span class="w"> </span>m<span class="w"> </span>using<span class="w"> </span>the<span class="w"> </span>/cmd_vel<span class="w"> </span>topic
 <span class="o">[</span>crazyflie_server.py-1<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1664806560</span>.043101845<span class="o">]</span><span class="w"> </span><span class="o">[</span>crazyflie_server<span class="o">]</span>:<span class="w">  </span>radio://0/20/2M/E7E7E7E701<span class="w"> </span>is<span class="w"> </span>fully<span class="w"> </span>connected!
 <span class="o">[</span>crazyflie_server.py-1<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1664806560</span>.044138096<span class="o">]</span><span class="w"> </span><span class="o">[</span>crazyflie_server<span class="o">]</span>:<span class="w"> </span>All<span class="w"> </span>Crazyflies<span class="w"> </span>are<span class="w"> </span>fully<span class="w"> </span>connected!
 <span class="o">[</span>crazyflie_server.py-1<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1664806560</span>.054259470<span class="o">]</span><span class="w"> </span><span class="o">[</span>crazyflie_server<span class="o">]</span>:<span class="w">  </span>radio://0/20/2M/E7E7E7E701:<span class="w"> </span>commander.enHighLevel<span class="w"> </span>is<span class="w"> </span><span class="nb">set</span><span class="w"> </span>to<span class="w"> </span><span class="m">1</span>
@@ -296,7 +292,7 @@ ros2<span class="w"> </span>launch<span class="w"> </span>crazyflie_examples<spa
 <span class="o">[</span>crazyflie_server.py-1<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1664806560</span>.116479518<span class="o">]</span><span class="w"> </span><span class="o">[</span>crazyflie_server<span class="o">]</span>:<span class="w"> </span>radio://0/20/2M/E7E7E7E701<span class="w"> </span>setup<span class="w"> </span>logging<span class="w"> </span><span class="k">for</span><span class="w"> </span>scan<span class="w"> </span>at<span class="w"> </span>freq<span class="w"> </span><span class="m">10</span>
 <span class="o">[</span>crazyflie_server.py-1<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1664806560</span>.118522365<span class="o">]</span><span class="w"> </span><span class="o">[</span>crazyflie_server<span class="o">]</span>:<span class="w"> </span>radio://0/20/2M/E7E7E7E701<span class="w"> </span>setup<span class="w"> </span>logging<span class="w"> </span><span class="k">for</span><span class="w"> </span>odom<span class="w"> </span>at<span class="w"> </span>freq<span class="w"> </span><span class="m">10</span>
 <span class="o">[</span>crazyflie_server.py-1<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1664806560</span>.123137907<span class="o">]</span><span class="w"> </span><span class="o">[</span>crazyflie_server<span class="o">]</span>:<span class="w"> </span>All<span class="w"> </span>Crazyflies<span class="w"> </span>loggging<span class="w"> </span>are<span class="w"> </span>initialized
-<span class="o">[</span>async_slam_toolbox_node-3<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1664806560</span>.329904109<span class="o">]</span><span class="w"> </span><span class="o">[</span>slam_toolbox<span class="o">]</span>:<span class="w"> </span>Message<span class="w"> </span>Filter<span class="w"> </span>dropping<span class="w"> </span>message:<span class="w"> </span>frame<span class="w"> </span><span class="s1">&#39;cf1&#39;</span><span class="w"> </span>at<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="m">1664806560</span>.232<span class="w"> </span><span class="k">for</span><span class="w"> </span>reason<span class="w"> </span><span class="s1">&#39;discarding message because the queue is full&#39;</span>
+<span class="o">[</span>async_slam_toolbox_node-3<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1664806560</span>.329904109<span class="o">]</span><span class="w"> </span><span class="o">[</span>slam_toolbox<span class="o">]</span>:<span class="w"> </span>Message<span class="w"> </span>Filter<span class="w"> </span>dropping<span class="w"> </span>message:<span class="w"> </span>frame<span class="w"> </span><span class="s1">&#39;cf231&#39;</span><span class="w"> </span>at<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="m">1664806560</span>.232<span class="w"> </span><span class="k">for</span><span class="w"> </span>reason<span class="w"> </span><span class="s1">&#39;discarding message because the queue is full&#39;</span>
 <span class="o">[</span>async_slam_toolbox_node-3<span class="o">]</span><span class="w"> </span>Info:<span class="w"> </span>clipped<span class="w"> </span>range<span class="w"> </span>threshold<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>within<span class="w"> </span>minimum<span class="w"> </span>and<span class="w"> </span>maximum<span class="w"> </span>range!
 <span class="o">[</span>async_slam_toolbox_node-3<span class="o">]</span><span class="w"> </span><span class="o">[</span>WARN<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1664806560</span>.333439709<span class="o">]</span><span class="w"> </span><span class="o">[</span>slam_toolbox<span class="o">]</span>:<span class="w"> </span>maximum<span class="w"> </span>laser<span class="w"> </span>range<span class="w"> </span>setting<span class="w"> </span><span class="o">(</span><span class="m">3</span>.5<span class="w"> </span>m<span class="o">)</span><span class="w"> </span>exceeds<span class="w"> </span>the<span class="w"> </span>capabilities<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>used<span class="w"> </span>Lidar<span class="w"> </span><span class="o">(</span><span class="m">3</span>.5<span class="w"> </span>m<span class="o">)</span>
 <span class="o">[</span>async_slam_toolbox_node-3<span class="o">]</span><span class="w"> </span>Registering<span class="w"> </span>sensor:<span class="w"> </span><span class="o">[</span>Custom<span class="w"> </span>Described<span class="w"> </span>Lidar<span class="o">]</span>
@@ -310,7 +306,7 @@ rviz2
 </div>
 <p>Add the following displays and panels to RVIZ:</p>
 <ul class="simple">
-<li><p>Changed the ‘Fixed frame’ to ‘world</p></li>
+<li><p>Changed the ‘Fixed frame’ to ‘map’</p></li>
 <li><p>‘Add’ button under displays and ‘by topic’ tab, select the ‘/map’ topic.</p></li>
 <li><p>‘Add’ button under displays and ‘by display type’ add a transform.</p></li>
 <li><p>‘Panels’ on the top menu, select ‘add new panel’ and select the SLAMToolBoxPlugin</p></li>
@@ -343,7 +339,7 @@ ros2<span class="w"> </span>run<span class="w"> </span>teleop_twist_keyboard<spa
 <h3>Preperation<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This tutorial assume you have taken the above mapping tutorial first.</p>
+<p>This tutorial assume you have done the above mapping tutorial first, along with the yaml file changes</p>
 </div>
 <p>Find the all the files that were created by the RVIZ2 slam toolbox plugin, which should be in format *.yaml, *.posegraph, *.data and *.pgm, and copy them in the /crazyflie_examples/data/ folder.
 Either you can replace those that are there already (‘map.*’), or call them different and just change the name in the launch file, which will be explain now.</p>
@@ -355,66 +351,62 @@ Either you can replace those that are there already (‘map.*’), or call them 
 <section id="looking-at-the-launch-file">
 <h3>Looking at the Launch file<a class="headerlink" href="#looking-at-the-launch-file" title="Link to this heading"></a></h3>
 <p>Let’s take a look at the launch file (multiranger_nav3_launch.py):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="n">LaunchDescription</span><span class="p">([</span>
-    <span class="n">Node</span><span class="p">(</span>
-        <span class="n">package</span><span class="o">=</span><span class="s1">&#39;crazyflie&#39;</span><span class="p">,</span>
-        <span class="n">executable</span><span class="o">=</span><span class="s1">&#39;crazyflie_server.py&#39;</span><span class="p">,</span>
-        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;crazyflie_server&#39;</span><span class="p">,</span>
-        <span class="n">output</span><span class="o">=</span><span class="s1">&#39;screen&#39;</span><span class="p">,</span>
-        <span class="n">parameters</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;world_tf_name&quot;</span><span class="p">:</span> <span class="s1">&#39;map&#39;</span><span class="p">},</span>
-                    <span class="n">server_params</span><span class="p">],</span>
-    <span class="p">),</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">map_name</span> <span class="o">=</span> <span class="s1">&#39;map&#39;</span>
+
+<span class="k">return</span> <span class="n">LaunchDescription</span><span class="p">([</span>
+
+    <span class="n">IncludeLaunchDescription</span><span class="p">(</span>
+        <span class="n">PythonLaunchDescriptionSource</span><span class="p">([</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="n">get_package_share_directory</span><span class="p">(</span><span class="s1">&#39;crazyflie&#39;</span><span class="p">),</span> <span class="s1">&#39;launch&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;/launch.py&#39;</span><span class="p">]),</span>
+        <span class="n">launch_arguments</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;backend&#39;</span><span class="p">:</span> <span class="s1">&#39;cflib&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;gui&#39;</span><span class="p">:</span> <span class="s1">&#39;false&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;teleop&#39;</span><span class="p">:</span> <span class="s1">&#39;false&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;mocap&#39;</span><span class="p">:</span> <span class="s1">&#39;false&#39;</span><span class="p">,</span>
+            <span class="p">}</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span>
     <span class="n">Node</span><span class="p">(</span>
         <span class="n">package</span><span class="o">=</span><span class="s1">&#39;crazyflie&#39;</span><span class="p">,</span>
         <span class="n">executable</span><span class="o">=</span><span class="s1">&#39;vel_mux.py&#39;</span><span class="p">,</span>
         <span class="n">name</span><span class="o">=</span><span class="s1">&#39;vel_mux&#39;</span><span class="p">,</span>
         <span class="n">output</span><span class="o">=</span><span class="s1">&#39;screen&#39;</span><span class="p">,</span>
-        <span class="n">parameters</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;hover_height&quot;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">},</span>
-                    <span class="p">{</span><span class="s2">&quot;incoming_twist_topic&quot;</span><span class="p">:</span> <span class="s2">&quot;/cmd_vel&quot;</span><span class="p">},</span>
-                    <span class="p">{</span><span class="s2">&quot;robot_prefix&quot;</span><span class="p">:</span> <span class="s2">&quot;/cf1&quot;</span><span class="p">}]</span>
+        <span class="n">parameters</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;hover_height&#39;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">},</span>
+                    <span class="p">{</span><span class="s1">&#39;incoming_twist_topic&#39;</span><span class="p">:</span> <span class="s1">&#39;/cmd_vel&#39;</span><span class="p">},</span>
+                    <span class="p">{</span><span class="s1">&#39;robot_prefix&#39;</span><span class="p">:</span> <span class="s1">&#39;/cf231&#39;</span><span class="p">}]</span>
     <span class="p">),</span>
-    <span class="n">Node</span><span class="p">(</span>
-    <span class="n">parameters</span><span class="o">=</span><span class="p">[</span>
-      <span class="p">{</span><span class="s1">&#39;odom_frame&#39;</span><span class="p">:</span> <span class="s1">&#39;odom&#39;</span><span class="p">},</span>
-      <span class="p">{</span><span class="s1">&#39;map_frame&#39;</span><span class="p">:</span> <span class="s1">&#39;map&#39;</span><span class="p">},</span>
-      <span class="p">{</span><span class="s1">&#39;base_frame&#39;</span><span class="p">:</span> <span class="s1">&#39;cf1&#39;</span><span class="p">},</span>
-      <span class="p">{</span><span class="s1">&#39;scan_topic&#39;</span><span class="p">:</span> <span class="s1">&#39;/cf1/scan&#39;</span><span class="p">},</span>
-      <span class="p">{</span><span class="s1">&#39;use_scan_matching&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
-      <span class="p">{</span><span class="s1">&#39;max_laser_range&#39;</span><span class="p">:</span> <span class="mf">3.5</span><span class="p">},</span>
-      <span class="p">{</span><span class="s1">&#39;resolution&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">},</span>
-      <span class="p">{</span><span class="s1">&#39;minimum_travel_distance&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">},</span>
-      <span class="p">{</span><span class="s1">&#39;minimum_travel_heading&#39;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">},</span>
-      <span class="p">{</span><span class="s1">&#39;map_update_interval&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">},</span>
-      <span class="p">{</span><span class="s1">&#39;mode&#39;</span><span class="p">:</span> <span class="s1">&#39;localization&#39;</span><span class="p">},</span>
-      <span class="p">{</span><span class="s2">&quot;map_file_name&quot;</span><span class="p">:</span> <span class="n">cf_examples_dir</span> <span class="o">+</span> <span class="s2">&quot;/data/&quot;</span> <span class="o">+</span> <span class="n">map_name</span><span class="p">},</span>
-      <span class="p">{</span><span class="s2">&quot;map_start_pose&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]}</span> <span class="p">],</span>
-    <span class="n">package</span><span class="o">=</span><span class="s1">&#39;slam_toolbox&#39;</span><span class="p">,</span>
-    <span class="n">executable</span><span class="o">=</span><span class="s1">&#39;async_slam_toolbox_node&#39;</span><span class="p">,</span>
-    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;slam_toolbox&#39;</span><span class="p">,</span>
-    <span class="n">output</span><span class="o">=</span><span class="s1">&#39;screen&#39;</span><span class="p">),</span>
     <span class="n">IncludeLaunchDescription</span><span class="p">(</span>
         <span class="n">PythonLaunchDescriptionSource</span><span class="p">(</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">bringup_launch_dir</span><span class="p">,</span> <span class="s1">&#39;bringup_launch.py&#39;</span><span class="p">)),</span>
-        <span class="n">launch_arguments</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;slam&#39;</span><span class="p">:</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;use_sim_time&#39;</span><span class="p">:</span> <span class="s1">&#39;false&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;map&#39;</span><span class="p">:</span> <span class="n">cf_examples_dir</span> <span class="o">+</span> <span class="s2">&quot;/data/&quot;</span> <span class="o">+</span> <span class="n">map_name</span> <span class="o">+</span> <span class="s2">&quot;.yaml&quot;</span><span class="p">,</span>
-                        <span class="s1">&#39;params_file&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cf_examples_dir</span><span class="p">,</span> <span class="s1">&#39;nav2_params.yaml&#39;</span><span class="p">),</span>
-                        <span class="s1">&#39;autostart&#39;</span><span class="p">:</span> <span class="s1">&#39;true&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;use_composition&#39;</span><span class="p">:</span> <span class="s1">&#39;true&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;transform_publish_period&#39;</span><span class="p">:</span> <span class="s1">&#39;0.02&#39;</span>
-                        <span class="p">}</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">get_package_share_directory</span><span class="p">(</span><span class="s1">&#39;slam_toolbox&#39;</span><span class="p">),</span> <span class="s1">&#39;launch/online_async_launch.py&#39;</span><span class="p">)),</span>
+        <span class="n">launch_arguments</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;slam_params_file&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">get_package_share_directory</span><span class="p">(</span><span class="s1">&#39;crazyflie_examples&#39;</span><span class="p">),</span> <span class="s1">&#39;config/slam_params.yaml&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;use_sim_time&#39;</span><span class="p">:</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span>
+        <span class="p">}</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+    <span class="p">),</span>
+    <span class="n">IncludeLaunchDescription</span><span class="p">(</span>
+        <span class="n">PythonLaunchDescriptionSource</span><span class="p">(</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">get_package_share_directory</span><span class="p">(</span><span class="s1">&#39;nav2_bringup&#39;</span><span class="p">),</span> <span class="s1">&#39;launch/bringup_launch.py&#39;</span><span class="p">)),</span>
+        <span class="n">launch_arguments</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;slam&#39;</span><span class="p">:</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;use_sim_time&#39;</span><span class="p">:</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;map&#39;</span><span class="p">:</span> <span class="n">get_package_share_directory</span><span class="p">(</span><span class="s1">&#39;crazyflie_examples&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;/data/&#39;</span> <span class="o">+</span> <span class="n">map_name</span> <span class="o">+</span> <span class="s1">&#39;.yaml&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;params_file&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">get_package_share_directory</span><span class="p">(</span><span class="s1">&#39;crazyflie_examples&#39;</span><span class="p">),</span> <span class="s1">&#39;config/nav2_params.yaml&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;autostart&#39;</span><span class="p">:</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;use_composition&#39;</span><span class="p">:</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;transform_publish_period&#39;</span><span class="p">:</span> <span class="s1">&#39;0.02&#39;</span>
+        <span class="p">}</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
     <span class="p">),</span>
     <span class="n">IncludeLaunchDescription</span><span class="p">(</span>
         <span class="n">PythonLaunchDescriptionSource</span><span class="p">(</span>
             <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">bringup_launch_dir</span><span class="p">,</span> <span class="s1">&#39;rviz_launch.py&#39;</span><span class="p">)),</span>
         <span class="n">launch_arguments</span><span class="o">=</span><span class="p">{</span>
-                        <span class="s1">&#39;rviz_config&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">bringup_dir</span><span class="p">,</span> <span class="s1">&#39;rviz&#39;</span><span class="p">,</span> <span class="s1">&#39;nav2_default_view.rviz&#39;</span><span class="p">)}</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+            <span class="s1">&#39;rviz_config&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="n">get_package_share_directory</span><span class="p">(</span><span class="s1">&#39;nav2_bringup&#39;</span><span class="p">),</span> <span class="s1">&#39;rviz&#39;</span><span class="p">,</span> <span class="s1">&#39;nav2_default_view.rviz&#39;</span><span class="p">)}</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
 <span class="p">])</span>
 </pre></div>
 </div>
 <p>The crazyflie_server, vel_mux and slam toolbox nodes are obviously the same as the mapping launch file example, with some key differences:</p>
 <ul class="simple">
-<li><p>crazyflie_server: An extra parameter called ‘world_tf_name’ which changes the name of the ‘world’ transform to ‘map’. This is to ensure compatibilty with the NAV2 bringup node later.</p></li>
+<li><p>crazyflie_server: The reference frame is set to ‘map’. This is to ensure compatibilty with the NAV2 bringup node later.</p></li>
 <li><p>slam toolbox:  ‘map_frame’ set to ‘map, ‘mode’ set to localization with a ‘map_file_name’ and ‘map_start_pose’ (now remember marking the start position of the mapping tutorial?)</p></li>
 </ul>
 <p>The next two nodes are new, which are included IncludeLaunchDescription to include other launch files (since these are pretty big).</p>
@@ -457,7 +449,7 @@ Please check out  <a class="reference external" href="https://navigation.ros.org
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2022, Wolfgang Hönig (IMRClab), Kimberly McGuire (Bitcraze AB) and contributors.</p>
+    <p>&#169; Copyright 2021-2025, Wolfgang Hönig (TU Berlin), Kimberly N. McGuire (Independent), and contributors.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

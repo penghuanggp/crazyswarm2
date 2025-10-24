@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
@@ -5,20 +7,15 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Crazyswarm2: A ROS 2 testbed for Aerial Robot Teams &mdash; Crazyswarm2 1.0a1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=036e6a88"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=036e6a88"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -36,9 +33,6 @@
           <a href="#" class="icon icon-home">
             Crazyswarm2
           </a>
-              <div class="version">
-                1.0
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -82,16 +76,41 @@
              
   <section id="crazyswarm2-a-ros-2-testbed-for-aerial-robot-teams">
 <span id="introduction"></span><h1>Crazyswarm2: A ROS 2 testbed for Aerial Robot Teams<a class="headerlink" href="#crazyswarm2-a-ros-2-testbed-for-aerial-robot-teams" title="Link to this heading"></a></h1>
-<p>Crazyswarm2 is a <strong>work-in-progress</strong> port of the original <a class="reference external" href="https://crazyswarm.readthedocs.io">Crazyswarm</a> to ROS 2.
-It is fully open-source and available on <a class="reference external" href="https://github.com/IMRCLab/crazyswarm2">github</a>.</p>
-<p>Crazyswarm2 is primarily made for researchers that want to operate or simulate a team of unmanned aerial vehicles (UAVs) that uses the
-<a class="reference external" href="https://www.bitcraze.io/products/crazyflie-2-1/">Bitcraze Crazyflie 2.x</a> or <a class="reference external" href="https://store.bitcraze.io/products/crazyflie-bolt">Bitcraze Crazyflie Bolt-based</a> UAVs.</p>
+<p>Crazyswarm2 is a ROS 2 stack to use aerial robots that use flight computers from Bitcraze AB, including the Crazyflie 2.1(+), Crazyflie 2.1 Brushless, Flapper Nimble+, and custom drones built using Crazyflie Bolt.</p>
+<p>On the technical side Crazyswarm2 is a port of the original <a class="reference external" href="https://crazyswarm.readthedocs.io">Crazyswarm</a> to ROS 2.
+It is fully open-source (MIT) and available on <a class="reference external" href="https://github.com/IMRCLab/crazyswarm2">github</a>.</p>
+<p>A good starting point is the <a class="reference external" href="https://imrclab.github.io/workshop-aerial-swarms-rss2024/">Aerial Swarm Tools and Applications Tutorial/Workshop</a>. If you use our work in academic research, please cite the original paper (we are actively working on a dedicated publication for Crazyswarm2):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>@inproceedings{crazyswarm,
+  author    = {James A. Preiss* and
+               Wolfgang  H\&quot;onig* and
+               Gaurav S. Sukhatme and
+               Nora Ayanian},
+  title     = {Crazyswarm: {A} large nano-quadcopter swarm},
+  booktitle = {{IEEE} International Conference on Robotics and Automation ({ICRA})},
+  pages     = {3299--3304},
+  publisher = {{IEEE}},
+  year      = {2017},
+  url       = {https://doi.org/10.1109/ICRA.2017.7989376},
+  doi       = {10.1109/ICRA.2017.7989376},
+  note      = {Software available at \url{https://github.com/USC-ACTLab/crazyswarm}},
+}
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Related Packages:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://aerostack2.github.io/">Aerostack2</a></p></li>
+<li><p><a class="reference external" href="https://github.com/OPT4SMART/crazychoir">CrazyChoir</a></p></li>
+<li><p><a class="reference external" href="https://skybrush.io/">Skybrush</a></p></li>
+<li><p><a class="reference external" href="https://dynamicswarms.github.io/ds-crazyflies/">Dynamic Swarms Crazyflies</a></p></li>
+</ul>
+</dd>
+</dl>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Crazyswarm2 is already usable for basic tasks (teleoperation, flying in a motion capture space, data collection), however the API and configuration file formats might still change. While many features of Crazyswarm1 are ported, there are currently still some important limitations:</p>
+<p>Crazyswarm2 is being actively used and developed. There are currently the following major limitations:</p>
 <ul class="simple">
-<li><p>Tested only for small team sizes (less than 10 robots)</p></li>
-<li><p>Limited Python API and only a few example scripts</p></li>
+<li><p>Crazyradio2 does not perform well when using broadcasts. We recommend using Crazyradio PA instead.</p></li>
+<li><p>Sometimes unicast packets get lost, which is a <a class="reference external" href="https://github.com/bitcraze/crazyflie-firmware/issues/703">known firmware bug</a>.</p></li>
 </ul>
 </div>
 <section id="contents">
@@ -119,7 +138,7 @@ It is fully open-source and available on <a class="reference external" href="htt
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2022, Wolfgang Hönig (IMRClab), Kimberly McGuire (Bitcraze AB) and contributors.</p>
+    <p>&#169; Copyright 2021-2025, Wolfgang Hönig (TU Berlin), Kimberly N. McGuire (Independent), and contributors.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
